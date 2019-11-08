@@ -8,7 +8,10 @@ const queryParser = require('express-query-int')
 
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
+
+// app.options('*',allowCors());
 app.use(allowCors)
+
 app.use(queryParser())
 
 app.listen(port, function() {
