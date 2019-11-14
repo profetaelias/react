@@ -6,6 +6,17 @@ BillingCycle.methods(['get', 'post', 'put', 'delete'])
 BillingCycle.updateOptions({new: true, runValidators: true})
 BillingCycle.after('post', errorHandler).after('put', errorHandler)
 
+BillingCycle.route('get', (req, res, next) => {
+    BillingCycle.find({}, (error, lista) => {
+        if (error) {
+            res.status(500).json({errors: [error]})
+        } else {
+            console.log(lista)
+            res.json({lista})
+        }        
+    });
+})
+
 BillingCycle.route('count', (req, res, next) => {
     BillingCycle.count((error, value) => {
         if (error) {
@@ -24,7 +35,7 @@ BillingCycle.route('summary', (req, res, next) => {
     }, {
         $project: { _id: 0, credit: 1, debt: 1 }
     }]  
-    , (error, result) => {
+    ,(error, result) => {
         if (error) {
             res.status(500).json({errors: [error]})
         } else {
