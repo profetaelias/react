@@ -10,6 +10,8 @@ import Grid from '../common/layout/grid'
 import If from '../common/operador/if'
 import Messages from '../common/msg/messages'
 import Input from '../common/form/inputAuth'
+import CryptoJS from 'crypto-js'
+import env from '../.env'
 
 class Auth extends Component {
     constructor(props) {
@@ -22,6 +24,8 @@ class Auth extends Component {
     }
     
     onSubmit(values) {
+        values.password = CryptoJS.AES.encrypt(values.password, env.secretKey).toString();
+        console.log(values.password)
         const { login, signup } = this.props
         this.state.loginMode ? login(values) : signup(values)
     }

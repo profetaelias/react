@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const User = require('./user')
 const env = require('../../.env')
+const CryptoJS = require('crypto-js')
 
 const emailRegex = /\S+@\S+\.\S+/
 const passwordRegex = /((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})/
@@ -15,7 +16,11 @@ const sendErrorsFromDB = (res, dbErrors) => {
 
 const login = (req, res, next) => {
     const email = req.body.email || ''
-    const password = req.body.password || ''
+    const passwordEncrypted = req.body.password || ''
+
+    let bytes  = CryptoJS.AES.decrypt(passwordEncrypted.toString(), env.secretKey);
+    let password = bytes.toString(CryptoJS.enc.Utf8);
+    //console.log("decrypted text", password);
 
     User.findOne({ email }, (err, user) => {
         if (err) {
