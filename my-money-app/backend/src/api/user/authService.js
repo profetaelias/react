@@ -48,8 +48,16 @@ const validateToken = (req, res, next) => {
 const signup = (req, res, next) => {
     const name = req.body.name || ''
     const email = req.body.email || ''
-    const password = req.body.password || ''
-    const confirmPassword = req.body.confirm_password || ''
+    // const password = req.body.password || ''
+    // const confirmPassword = req.body.confirm_password || ''
+
+    const passwordEncrypted = req.body.password || ''
+    let bytesPassword  = CryptoJS.AES.decrypt(passwordEncrypted.toString(), env.secretKey);
+    let password = bytesPassword.toString(CryptoJS.enc.Utf8);
+    
+    const confirmPasswordEncrypted = req.body.confirm_password || ''
+    let bytesConfirmPassword  = CryptoJS.AES.decrypt(confirmPasswordEncrypted.toString(), env.secretKey);
+    let confirmPassword = bytesConfirmPassword.toString(CryptoJS.enc.Utf8);
 
     if (!email.match(emailRegex)) {
         return res.status(400).send({ errors: ['O e-mail informado está inválido'] })

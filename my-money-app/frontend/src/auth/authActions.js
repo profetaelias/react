@@ -15,7 +15,6 @@ export function logout() {
 }
 
 function submit(values, url) {   
-    console.log(values)
     return dispatch => {
         axios.post(url, values)
             .then(resp => {
@@ -25,7 +24,6 @@ function submit(values, url) {
             })
             .catch(e => {
                 e.response.data.errors.forEach(error => {
-                    console.log(error)
                     toastr.error('Erro', error)
                 });
             })

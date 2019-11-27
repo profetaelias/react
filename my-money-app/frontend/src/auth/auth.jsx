@@ -25,7 +25,8 @@ class Auth extends Component {
     
     onSubmit(values) {
         values.password = CryptoJS.AES.encrypt(values.password, env.secretKey).toString();
-        console.log(values.password)
+        values.confirm_password = CryptoJS.AES.encrypt(values.confirm_password, env.secretKey).toString();
+        
         const { login, signup } = this.props
         this.state.loginMode ? login(values) : signup(values)
     }
