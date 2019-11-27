@@ -11,7 +11,6 @@ BillingCycle.route('get', (req, res, next) => {
         if (error) {
             res.status(500).json({errors: [error]})
         } else {
-            console.log(lista)
             res.json({lista})
         }        
     });
