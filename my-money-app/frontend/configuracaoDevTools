@@ -1,0 +1,9 @@
+No index.js após os imports criar a linha:
+const devTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+
+Adicionar no applyMiddleware a const devTools:
+const store = applyMiddleware(promiseMiddleware)(createStore)(reducers, devTools)
+
+Adicionar o addon do REDUX DEVTOOLS no navegador.
+
+Após isso,ao recarregar a aplicação é possível verificar as actions e states de sua aplicação pelo browser, na aba redux do inspector.
