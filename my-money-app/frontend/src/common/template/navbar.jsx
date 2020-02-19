@@ -24,13 +24,13 @@ class NavBar extends Component {
                                 aria-expanded={this.state.open ? 'true' : 'false'}
                                 className="dropdown-toggle"
                                 data-toggle="dropdown">
-                                    <img src="https://media.licdn.com/dms/image/C4D03AQEgVU5JGcz2Aw/profile-displayphoto-shrink_200_200/0?e=1580342400&v=beta&t=GHeVBjzYTxKt3SZRMMzmGt973tJg0Gr9hcX39ScBHkI"
+                                    <img src="https://www.viajeparaisrael.com.br/wp-content/uploads/2018/03/isaias.png"
                                         className="user-image" alt="User Image"/> 
                                     <span className="hidden-xs">{name}</span>
                             </a>
                             <ul className="dropdown-menu">
                                 <li className="user-header">
-                                    <img src="https://media.licdn.com/dms/image/C4D03AQEgVU5JGcz2Aw/profile-displayphoto-shrink_200_200/0?e=1580342400&v=beta&t=GHeVBjzYTxKt3SZRMMzmGt973tJg0Gr9hcX39ScBHkI"
+                                    <img src="https://www.viajeparaisrael.com.br/wp-content/uploads/2018/03/isaias.png"
                                         className="img-circle" alt="Usuário" />
                                     <p>{name}<small>{email}</small></p> 
                                 </li>
